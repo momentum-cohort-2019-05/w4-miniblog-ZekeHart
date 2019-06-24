@@ -2,11 +2,11 @@
 
 {% block content %}
 <h1 class="tc sans-serif">All Our Posts</h1>
-{% if blogpost_list %}
+{% if author_list %}
 <ul class="list pl0 ml0 center mw6 ba b--light-silver br2 tc sans-serif">
-  {% for blogpost in blogpost_list %}
-  <li class="link bg-animate black-80 hover-bg-light-purple dibph3 pv3 bb b--light-silver">
-    <a href="{{ BlogPost.get_absolute_url }}">{{ blogpost.postName }}</a> ({{blogpost.author}})
+  {% for author in author_list %}
+  <li class="link bg-animate black-80 hover-bg-light-pink dibph3 pv3 bb b--light-silver">
+    <a href="{{ Author.get_absolute_url }}">{{ author.name }}</a> ({{author.bio}})
   </li>
   {% endfor %}
 </ul>

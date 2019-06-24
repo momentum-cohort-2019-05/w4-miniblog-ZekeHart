@@ -20,7 +20,7 @@ class BlogPost(models.Model):
                                      auto_now=True)
 
     def __str__l(self):
-        return self.postName
+        return str(self.postName)
 
     def get_absolute_url(self):
         return reverse('blogpost-detail', args=[str(self.id)])
@@ -43,7 +43,7 @@ class Author(models.Model):
         return reverse('author-detail', args=[str(self.id)])
 
     def __str__(self):
-        return self.author_name
+        return str(self.author_name)
 
 
 class BlogComment(models.Model):

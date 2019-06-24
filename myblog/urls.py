@@ -20,14 +20,22 @@ from blog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/<int:pk>', views.BlogDetailView.as_view(), name='blogPost'),
+    path('blogposts/<int:pk>',
+         views.BlogPostDetailView.as_view(),
+         name='blogPost'),
     path('blogposts/', views.BlogPostListView.as_view(), name='blogposts'),
 ]
 
 urlpatterns += [
-    path('', RedirectView.as_view(url='/blog/', permanent=True)),
+    path('', RedirectView.as_view(url='/index/', permanent=True)),
 ]
 
 urlpatterns += [
     path('index/', views.index, name='index'),
+    path('contact/', views.contact, name='contact'),
+]
+
+urlpatterns += [
+    path('authors/<int:pk>', views.AuthorDetailView.as_view(), name='authors'),
+    path('authors/', views.AuthorListView.as_view(), name='authors'),
 ]
