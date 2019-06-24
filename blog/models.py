@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 from django.urls import reverse
+from datetime import date
 # Create your models here.
 
 
@@ -18,9 +19,11 @@ class BlogPost(models.Model):
     post_date = models.DateTimeField(verbose_name="TimeOfPosting",
                                      auto_now=True)
 
+    def __str__l(self):
+        return self.postName
+
     def get_absolute_url(self):
-        """Returns the url to access a detail record for this book."""
-        return reverse('BlogPost-detail', args=[str(self.id)])
+        return reverse('blogpost-detail', args=[str(self.id)])
 
 
 class Author(models.Model):
@@ -35,6 +38,9 @@ class Author(models.Model):
 
     author_bio = models.TextField(verbose_name="AuthorBio",
                                   default="too boring for a bio")
+
+    def get_absolute_url(self):
+        return reverse('author-detail', args=[str(self.id)])
 
     def __str__(self):
         return self.author_name
@@ -51,9 +57,10 @@ class BlogComment(models.Model):
     comment_date = models.DateTimeField(verbose_name="TimeOfPosting",
                                         auto_now=True)
 
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
-# class BlogUser(models.Model):
-#     user_name = models.CharField(max_length=100)
+    def get_absolute_url(self):
+        return reverse('blogcomment-detail', args=[str(self.id)])
 
-#     def __str__(self):
-#         return self.user_name
+    def __str__(self):
+        return self.comment_text

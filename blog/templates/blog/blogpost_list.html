@@ -1,16 +1,16 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1 class="tc bb baskerville">All Our Posts</h1>
-{% if BlogPost_list %}
-<ul>
-  {% for BlogPost in BlogPost_list %}
+<h1 class="tc sans-serif">All Our Posts</h1>
+{% if blogpost_list %}
+<ul class="tc">
+  {% for blogpost in blogpost_list %}
   <li>
-    <a href="{{ BlogPost.get_absolute_url }}">{{ BlogPost.post_name }}</a> ({{BlogPost.author}})
+    <a href="{{ BlogPost.get_absolute_url }}">{{ blogpost.postName }}</a> ({{blogpost.author}})
   </li>
   {% endfor %}
 </ul>
 {% else %}
-<p>There are no posts yet. Sorry!</p>
+<p class="tc">There are no posts yet. Sorry!</p>
 {% endif %}
 {% endblock %}
