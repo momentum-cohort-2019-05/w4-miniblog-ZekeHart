@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 class="tc bb baskerville">All Our Posts</h1>
+{% if BlogPost_list %}
+<ul>
+  {% for BlogPost in BlogPost_list %}
+  <li>
+    <a href="{{ BlogPost.get_absolute_url }}">{{ BlogPost.post_name }}</a> ({{BlogPost.author}})
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no posts yet. Sorry!</p>
+{% endif %}
+{% endblock %}

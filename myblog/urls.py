@@ -16,11 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import RedirectView
+from blog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('blog/<int:pk>', views.BlogDetailView.as_view(), name='blogPost'),
+    path('blogposts/', views.BlogPostListView.as_view(), name='blogposts'),
 ]
 
 urlpatterns += [
     path('', RedirectView.as_view(url='/blog/', permanent=True)),
+]
+
+urlpatterns += [
+    path('index/', views.index, name='index'),
 ]
